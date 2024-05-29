@@ -1,4 +1,4 @@
-import { Badge, Dropdown, Space, Table } from "antd";
+import { Badge, Table } from "antd";
 import "./AgentsOverview.css";
 import React, { useEffect } from "react";
 
@@ -91,7 +91,6 @@ function AgentsOverview() {
         columns={columns}
         expandable={{
           expandedRowRender,
-          defaultExpandedRowKeys: ["0"],
         }}
         dataSource={data}
         pagination={false}
