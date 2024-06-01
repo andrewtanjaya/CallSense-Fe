@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import WaveSurfer from 'wavesurfer.js';
 import RegionsPlugin from 'wavesurfer.js/dist/plugins/regions.js';
-import './AudioWave.css'
+import './AudioPlayer.css'
 import TimelinePlugin from 'wavesurfer.js/dist/plugins/timeline.js';
 
-const AudioWave = ({ audioUrl }) => {
+const AudioPlayer = ({ audioUrl }) => {
     const waveformRef = useRef(null);
     const [waveSurfer, setWaveSurfer] = useState(null);
 
@@ -96,7 +96,7 @@ const AudioWave = ({ audioUrl }) => {
             <div className='waveaudio-container' ref={waveformRef}></div>
 
             <div className='controls'>
-                <input type="range" name="" id="" />
+                zoom<input type="range" name="zoom" id="" />
                 <button onClick={handlePlayPause} className='button-play'>
                     Play / Pause
                 </button>
@@ -105,4 +105,4 @@ const AudioWave = ({ audioUrl }) => {
     );
 };
 
-export default AudioWave;
+export default AudioPlayer;
