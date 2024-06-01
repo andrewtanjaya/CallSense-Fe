@@ -1,0 +1,40 @@
+.button-play {
+    margin-bottom: 50px;
+}
+
+.waveaudio-container {
+    width: 80vw;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 40px;
+    border-radius: 40px;
+    box-shadow:
+        0px 0px 4.2px rgba(0, 0, 0, 0.019),
+        0px 0px 10.7px rgba(0, 0, 0, 0.027),
+        0px 0px 21.8px rgba(0, 0, 0, 0.033),
+        0px 0px 44.9px rgba(0, 0, 0, 0.041),
+        0px 0px 123px rgba(0, 0, 0, 0.06);
+    background-color: rgb(249, 249, 249);
+}
+
+.controls {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    button {
+        margin: 0;
+        padding: 0;
+        margin-left: 10px;
+    }
+
+    input {
+        margin-right: 10px;
+    }
+}

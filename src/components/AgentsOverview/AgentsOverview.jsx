@@ -1,4 +1,4 @@
-import { Badge, Table } from "antd";
+import { Badge, Space, Table } from "antd";
 import "./AgentsOverview.css";
 import React, { useEffect } from "react";
 
@@ -55,6 +55,16 @@ function AgentsOverview() {
           ) : (
             <Badge status="error" text={customer_response} />
           ),
+      },
+      {
+        title: 'Action',
+        key: 'action',
+        dataIndex: "id",
+        render: (id) => (
+          <Space size="middle">
+            <a href={"/detail/" + id}>Detail</a>
+          </Space>
+        ),
       },
     ];
 
