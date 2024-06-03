@@ -11,6 +11,7 @@ function App() {
       <BrowserRouter>
         <HeaderNav />
         <Routes>
+          <Route exact path="/" element={<Manager />} />
           <Route exact path="/manager" element={<Manager />} />
           <Route exact path="/agent-1" element={<Agent />} />
           <Route exact path="/agent-2" element={<Agent />} />

@@ -1,15 +1,17 @@
 import { Badge, Space, Table } from "antd";
 import "./AgentsOverview.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { getAgentOverview } from "../../integration/ApiClient";
 
 function AgentsOverview() {
-  const data = [];
+  // const [setData, data] = useState([])
+ const  data = []
   for (let i = 0; i < 10; ++i) {
     data.push({
       key: i.toString(),
-      name: "Agent-1",
-      total_call: 10,
-      customer_response: "Positive (42%)",
+      agent_name: "Agent-1",
+      total_calls: 10,
+      average_sentiment: "Positive (42%)",
     });
   }
 
@@ -25,10 +27,12 @@ function AgentsOverview() {
   }
 
   useEffect(() => {
-    console.log(detail);
-  }, [detail]);
+    // getAgentOverview().then((data) => {
+    //   setData(data.data);
+    // });
+  }, []);
 
-  const expandedRowRender = () => {
+  const expandedRowRender = (record) => {
     const columns = [
       {
         title: "ID",
@@ -37,28 +41,28 @@ function AgentsOverview() {
       },
       {
         title: "Start At",
-        dataIndex: "start_at",
-        key: "start_at",
+        dataIndex: "started_at",
+        key: "started_at",
       },
       {
         title: "Ends At",
-        dataIndex: "ends_at",
-        key: "ends_at",
+        dataIndex: "ended_at",
+        key: "ended_at",
       },
       {
         title: "Customer Response",
-        dataIndex: "customer_response",
-        key: "customer_response",
-        render: (customer_response) =>
-          customer_response.split(" ")[0] === "Positive" ? (
-            <Badge status="success" text={customer_response} />
+        dataIndex: "sentiment",
+        key: "sentiment",
+        render: (sentiment) =>
+          sentiment.split(" ")[0] === "Positive" ? (
+            <Badge status="success" text={sentiment} />
           ) : (
-            <Badge status="error" text={customer_response} />
+            <Badge status="error" text={sentiment} />
           ),
       },
       {
-        title: 'Action',
-        key: 'action',
+        title: "Action",
+        key: "action",
         dataIndex: "id",
         render: (id) => (
           <Space size="middle">
@@ -68,29 +72,29 @@ function AgentsOverview() {
       },
     ];
 
-    return <Table columns={columns} dataSource={detail} pagination={false} />;
+    return <Table columns={columns} dataSource={record.calls} pagination={false} />;
   };
 
   const columns = [
     {
       title: "Agent Name",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "agent_name",
+      key: "agent_name",
     },
     {
       title: "Total Call",
-      dataIndex: "total_call",
-      key: "total_call",
+      dataIndex: "total_calls",
+      key: "totaltotal_calls_call",
     },
     {
       title: "Customer Response",
-      dataIndex: "customer_response",
-      key: "customer_response",
-      render: (customer_response) =>
-        customer_response.split(" ")[0] === "Positive" ? (
-          <Badge status="success" text={customer_response} />
+      dataIndex: "average_sentiment",
+      key: "average_sentiment",
+      render: (average_sentiment) =>
+        average_sentiment.split(" ")[0] === "Positive" ? (
+          <Badge status="success" text={average_sentiment} />
         ) : (
-          <Badge status="error" text={customer_response} />
+          <Badge status="error" text={average_sentiment} />
         ),
     },
   ];
