@@ -12,7 +12,7 @@ import {
 import { chat, endCall, startCall } from "../../integration/ApiClient";
 
 function Agent() {
-  const [setTyping, isTyping] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
   const path = window.location.pathname;
   const customerStreamingUrl = process.env.REACT_APP_CUSTOMER_STREAMING_URL;
   const agentStreamingUrl = process.env.REACT_APP_AGENT_STREAMING_URL;
@@ -41,7 +41,7 @@ function Agent() {
   };
 
   const onChangeMessage = (m) => {
-    setTyping(true)
+    setIsTyping(true);
     let temp = [...messages];
     temp.push({
       message: m,
@@ -52,7 +52,7 @@ function Agent() {
         direction: "incoming",
       });
       setMessages(temp);
-      setTyping(false)
+      setIsTyping(false);
     });
   };
 
