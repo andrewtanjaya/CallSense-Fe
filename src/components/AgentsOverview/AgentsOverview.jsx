@@ -4,32 +4,14 @@ import React, { useEffect, useState } from "react";
 import { getAgentOverview } from "../../integration/ApiClient";
 
 function AgentsOverview() {
-  // const [setData, data] = useState([])
- const  data = []
-  for (let i = 0; i < 10; ++i) {
-    data.push({
-      key: i.toString(),
-      agent_name: "Agent-1",
-      total_calls: 10,
-      average_sentiment: "Positive (42%)",
-    });
-  }
-
-  const detail = [];
-  for (let i = 0; i < 5; ++i) {
-    detail.push({
-      key: i.toString(),
-      id: i.toString(),
-      customer_response: "Negative (20%)",
-      start_at: "20-04-2023 00:00:00",
-      ends_at: "20-04-2023 00:00:00",
-    });
-  }
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    // getAgentOverview().then((data) => {
-    //   setData(data.data);
-    // });
+    console.log(data);
+    getAgentOverview().then((data) => {
+      console.log(data);
+      setData(data.data);
+    });
   }, []);
 
   const expandedRowRender = (record) => {
@@ -54,10 +36,12 @@ function AgentsOverview() {
         dataIndex: "sentiment",
         key: "sentiment",
         render: (sentiment) =>
-          sentiment.split(" ")[0] === "Positive" ? (
-            <Badge status="success" text={sentiment} />
+          sentiment >= 30 ? (
+            <Badge status="success" text={"Positive (" + sentiment + ")%"} />
+          ) : sentiment <= -30 ? (
+            <Badge status="error" text={"Negative (" + sentiment + ")%"} />
           ) : (
-            <Badge status="error" text={sentiment} />
+            <Badge status="default" text={"Netral (" + sentiment + ")%"} />
           ),
       },
       {
@@ -72,7 +56,9 @@ function AgentsOverview() {
       },
     ];
 
-    return <Table columns={columns} dataSource={record.calls} pagination={false} />;
+    return (
+      <Table columns={columns} dataSource={record.calls} pagination={false} />
+    );
   };
 
   const columns = [
@@ -91,10 +77,21 @@ function AgentsOverview() {
       dataIndex: "average_sentiment",
       key: "average_sentiment",
       render: (average_sentiment) =>
-        average_sentiment.split(" ")[0] === "Positive" ? (
-          <Badge status="success" text={average_sentiment} />
+        average_sentiment >= 30 ? (
+          <Badge
+            status="success"
+            text={"Positive (" + average_sentiment + ")%"}
+          />
+        ) : average_sentiment <= -30 ? (
+          <Badge
+            status="error"
+            text={"Negative (" + average_sentiment + ")%"}
+          />
         ) : (
-          <Badge status="error" text={average_sentiment} />
+          <Badge
+            status="default"
+            text={"Netral (" + average_sentiment + ")%"}
+          />
         ),
     },
   ];

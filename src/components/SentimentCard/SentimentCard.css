@@ -10,11 +10,11 @@
 }
 
 .positive-sentiment-card{
-    background-color: rgb(237, 67, 55);
+    background-color: rgb(75, 181, 67);
 }
 
 .negative-sentiment-card{
-    background-color: rgb(75, 181, 67);
+    background-color:  rgb(237, 67, 55);
 }
 
 .netral-sentiment-card{

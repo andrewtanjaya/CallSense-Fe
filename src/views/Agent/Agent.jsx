@@ -36,7 +36,7 @@ function Agent() {
 
   const endAgentCall = () => {
     endCall(path.substring(1, path.length).toUpperCase()).then((data) => {
-      alert(data.message);
+      alert("Call Ended");
     });
   };
 
@@ -46,6 +46,7 @@ function Agent() {
     temp.push({
       message: m,
     });
+    setMessages(temp);
     chat(m).then((data) => {
       temp.push({
         message: data.data.answer,
@@ -109,12 +110,8 @@ function Agent() {
               }
             >
               {messages.map((m, idx) => (
-                <Message key={idx} model={m} />
+                <Message className={m.direction != null && m.direction === "incoming" ? "message-bubble left-align" : "message-bubble right-align"}  key={idx} model={m} />
               ))}
-              {/* <Message model={{
-              direction: 'incoming',
-              message: "Baca Sendiri"
-            }} /> */}
             </MessageList>
             <MessageInput
               attachButton={false}
